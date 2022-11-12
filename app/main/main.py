@@ -12,17 +12,13 @@ score_list = []
 for article in news:
     link.append(article.find(name="a").get("href"))
     title.append(article.find(name="a").getText())
-print(link)
-print(title)
 
 scores = soup.find_all(class_="score")
 for score in scores:
     score_list.append(score.getText())
 
+print(link)
+print(title)
 print(score_list)
-
-
-
-
 
 
