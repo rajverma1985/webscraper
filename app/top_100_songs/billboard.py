@@ -5,10 +5,8 @@ from bs4 import BeautifulSoup
 
 url = "https://www.billboard.com/charts/hot-100"
 now = datetime.datetime.now()
-date = input("Please enter a date in yyyy-mm-dd format:\n")
+date = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD: ")
 response = requests.get(f"{url}/{date}")
 soup = BeautifulSoup(response.text, "html.parser")
-
-top_100 = soup.find_all(name="h3", id="title-of-a-story", class_="a-chart-detail-open")
-song_list = [n.text.strip() for n in top_100]
-print(song_list)
+songs_100 = soup.find_all("h3", id="title-of-a-story", class_="lrv-u-font-size-16")
+song_list = [song.getText().strip() for song in songs_100]
