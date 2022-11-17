@@ -25,6 +25,7 @@ song_uris = []
 for song in song_list:
     result = sp.search(q=f"track:{song} year:{year}")
     try:
+        # get the uri so that we can add it to the playlist.
         uri = result['tracks']['items'][0]['uri']
         song_uris.append(uri)
     except IndexError:
@@ -33,5 +34,5 @@ for song in song_list:
 # Creating a new private playlist in Spotify based on date
 playlist = sp.user_playlist_create(user=user_id, name=f"{date} Billboard 100", public=False)
 
-# Adding songs to the playlist
+# # Adding songs to the playlist, passes the playlist id and uri for the song and adds it to the playlist
 sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
