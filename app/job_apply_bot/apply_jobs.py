@@ -17,23 +17,25 @@ driver.get("https://www.linkedin.com/jobs/search/?f_LF=f_AL&geoId=102257491&keyw
            "=London%2C%20England%2C%20United%20Kingdom&redirect=false&position=1&pageNum=0")
 
 # Send info to LinkedIn to login first and then apply to the jobs
-sign_in = driver.find_element(By.LINK_TEXT, "Sign in")
-sign_in.click()
+driver.maximize_window()
+driver.find_element(By.LINK_TEXT, "Sign in").click()
 user_name = driver.find_element(By.ID, "username")
 user_name.send_keys(Email)
 password = driver.find_element(By.ID, "password")
 password.send_keys(Password)
 password.send_keys(Keys.ENTER)
-apply_job = driver.find_element(By.CLASS_NAME, "jobs-apply-button--top-card")
-apply_job.click()
+
+driver.find_element(By.CLASS_NAME, "jobs-apply-button--top-card").click()
 phone_entry = driver.find_element(By.CLASS_NAME, "fb-single-line-text__input")
 if phone_entry.text == "":
     phone_entry.send_keys(Phone)
 
-submit = driver.find_element(By.CSS_SELECTOR, "footer button")
-submit.click()
+driver.find_element(By.CSS_SELECTOR, "footer button").click()
 
 # Todo: add functionality to apply to a job with relevant job type/description
+
+driver.find_element(By.CSS_SELECTOR, ".justify-flex-end .artdeco-button--primary").click()
+driver.find_element(By.XPATH, '/html/body/div[3]/div/div/div[2]/div/div[2]/div/footer/div[1]/label').click()
 
 time.sleep(5)
 driver.close()
